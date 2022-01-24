@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+}
+
+.App {
+  font-size: 20px;
+  margin: 0;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-image: url("./image/mainImage2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    padding: 20px 0;
+    color: aliceblue;
+  }
+
+  &__title {
+    text-align: center;
+    margin: 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+
+  }
+}
+
+.form {
+  display: flex;
+
+  &__element {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin: 0 auto;
+    
+    &--section{
+      font-size: 20px;
+      max-width: 500px;
+      text-align: center;
+    }
+  }
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
