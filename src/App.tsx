@@ -36,9 +36,13 @@ export const App: React.FC = () => {
       setDownload('done')
     }
 
-    setFoundBooks(search.items)
-    setNumberBooks(search.totalItems)
-   
+    if (!startCount) {
+      setFoundBooks(search.items)
+      setNumberBooks(search.totalItems)
+    } else {
+      setFoundBooks([...foundBooks, ...search.items]);
+    }
+
   }
 
   const getBookById = (selectedId: string | number) => {
