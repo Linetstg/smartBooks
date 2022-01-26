@@ -15,6 +15,7 @@ export const App: React.FC = () => {
   const [numberBooks, setNumberBooks] = useState<string | number>('');
   const [selectedBook, setSelectedBook] = useState<Books>({} as Books);
 
+  console.log(foundBooks);
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBook(event?.target.value);
