@@ -31,7 +31,7 @@ export const App: React.FC = () => {
   const getBook = async (startCount: number = 0, maxCount: number = 30) => {
     const search = await getBooks(searchBook, selectedFilter, selectedSorting, startCount, maxCount)
 
-
+    console.log(search)
     if (search) {
       setDownload('done')
     }
