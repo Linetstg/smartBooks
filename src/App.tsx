@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './App.scss';
 import { BookList } from './components/BookList/BookList';
 import { BookInfo } from './components/BookInfo/BookInfo';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 export const App: React.FC = () => {
   const [searchBook, setSearchBook] = useState('');
@@ -154,6 +154,11 @@ export const App: React.FC = () => {
             <Route
               path="/book-info"
               element={<BookInfo selectedBook={selectedBook} />}
+            />
+
+            <Route
+              path="*"
+              element={<Navigate to="/" />}
             />
 
 
