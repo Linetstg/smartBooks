@@ -10,7 +10,7 @@ export const BookInfo: React.FC<Props> = ({ selectedBook }) => {
 
 
 
-  console.log(selectedBook)
+  console.log(selectedBook);
 
   return (
     <div className="BookInfo">

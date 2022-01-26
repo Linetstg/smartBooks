@@ -11,34 +11,34 @@ export const App: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>('');
   const [selectedSorting, setSelectedSorting] = useState<string>('relevance');
   const [foundBooks, setFoundBooks] = useState<Books[]>([]);
-  const [download, setDownload] = useState('')
-  const [numberBooks, setNumberBooks] = useState<string | number>('')
-  const [selectedBook, setSelectedBook] = useState<Books>({} as Books)
+  const [download, setDownload] = useState('');
+  const [numberBooks, setNumberBooks] = useState<string | number>('');
+  const [selectedBook, setSelectedBook] = useState<Books>({} as Books);
 
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchBook(event?.target.value)
+    setSearchBook(event?.target.value);
   }
 
   const handleChangeFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedFilter(event?.target.value)
+    setSelectedFilter(event?.target.value);
   }
 
   const handleChangeSorting = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedSorting(event?.target.value)
+    setSelectedSorting(event?.target.value);
   }
 
   const getBook = async (startCount: number = 0, maxCount: number = 30) => {
     const search = await getBooks(searchBook, selectedFilter, selectedSorting, startCount, maxCount)
 
-    console.log(search)
+    console.log(search);
     if (search) {
-      setDownload('done')
+      setDownload('done');
     }
 
     if (!startCount) {
-      setFoundBooks(search.items)
-      setNumberBooks(search.totalItems)
+      setFoundBooks(search.items);
+      setNumberBooks(search.totalItems);
     } else {
       setFoundBooks([...foundBooks, ...search.items]);
     }
@@ -69,7 +69,7 @@ export const App: React.FC = () => {
           className='App__form form'
           onSubmit={(event) => {
             event.preventDefault();
-            setSearchBook('')
+            setSearchBook('');
           }}
         >
           <div className='form__element '>
