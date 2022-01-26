@@ -151,8 +151,6 @@ export const App: React.FC = () => {
               }
             />
 
-
-
             <Route
               path="/book-info"
               element={<BookInfo selectedBook={selectedBook} />}
