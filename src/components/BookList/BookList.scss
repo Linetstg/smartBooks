@@ -1,0 +1,44 @@
+.BookList {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+
+  &__number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  &__element {
+    display: grid;
+    justify-content: center;
+    gap: 48px;
+    grid-template-columns: repeat(1, 280px);
+  
+    @media (min-width: 700px) {
+      grid-template-columns: repeat(2, 280px);
+    }
+  
+    @media (min-width: 1080px) {
+      grid-template-columns: repeat(3, 280px);
+    }
+  
+    @media (min-width: 1400px) {
+      grid-template-columns: repeat(4, 280px);
+    }
+  
+    &--card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      height: 400px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: rgb(216, 222, 228);
+      
+    }
+  }
+}
+

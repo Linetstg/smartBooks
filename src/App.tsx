@@ -2,17 +2,51 @@ import React, { useState } from 'react';
 import { getBooks } from './api/api';
 import logo from './logo.svg';
 import './App.scss';
+import { BookList } from './components/BookList/BookList';
+import { BookInfo } from './components/BookInfo/BookInfo';
+import { Route, Routes } from 'react-router-dom';
 
 export const App: React.FC = () => {
   const [searchBook, setSearchBook] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState<string>('');
+  const [selectedSorting, setSelectedSorting] = useState<string>('relevance');
+  const [foundBooks, setFoundBooks] = useState<Books[]>([]);
+  const [download, setDownload] = useState('')
+  const [numberBooks, setNumberBooks] = useState<string | number>('')
+  const [selectedBook, setSelectedBook] = useState<Books>({} as Books)
+
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBook(event?.target.value)
   }
 
-  const getBook = async () => {
-    const search = await getBooks(searchBook)
-    console.log(search)
+  const handleChangeFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedFilter(event?.target.value)
+  }
+
+  const handleChangeSorting = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedSorting(event?.target.value)
+  }
+
+  const getBook = async (startCount: number = 0, maxCount: number = 30) => {
+    const search = await getBooks(searchBook, selectedFilter, selectedSorting, startCount, maxCount)
+
+
+    if (search) {
+      setDownload('done')
+    }
+
+    setFoundBooks(search.items)
+    setNumberBooks(search.totalItems)
+   
+  }
+
+  const getBookById = (selectedId: string | number) => {
+    const selectIteam = foundBooks.find(book => book.id === selectedId);
+
+    if (selectIteam) {
+      setSelectedBook(selectIteam);
+    }
   }
 
 
@@ -44,7 +78,11 @@ export const App: React.FC = () => {
             />
             <button
               className="form__element--section"
-              onClick={() => getBook()}
+              onClick={() => {
+                getBook();
+                setDownload('processin');
+              }}
+
             >
               Search
             </button>
@@ -55,8 +93,10 @@ export const App: React.FC = () => {
               Categories
               <select
                 className='form__element--section'
+                value={selectedFilter}
+                onChange={handleChangeFilter}
               >
-                <option value="all">All</option>
+                <option value="">All</option>
                 <option value="art">Art</option>
                 <option value="biography">Biography</option>
                 <option value="computers">Computers</option>
@@ -70,6 +110,9 @@ export const App: React.FC = () => {
               Sorting by
               <select
                 className='form__element--section'
+                value={selectedSorting}
+                onChange={handleChangeSorting}
+
               >
                 <option value="relevance">Relevance</option>
                 <option value="newest">Newest</option>
@@ -80,10 +123,43 @@ export const App: React.FC = () => {
 
         </form>
 
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
 
 
       </header>
+
+      {download === 'processin' && (
+        <div className="App__processin">
+          <img src={logo} className="App-logo" alt="logo" />
+        </div>
+      )}
+
+      {download === 'done' &&
+        <div>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <BookList
+                  foundBooks={foundBooks}
+                  numberBooks={numberBooks}
+                  findBook={getBookById}
+                />
+              }
+            />
+
+
+
+            <Route
+              path="/book-info"
+              element={<BookInfo selectedBook={selectedBook} />}
+            />
+
+
+          </Routes>
+
+        </div>
+      }
+
     </div>
   );
 }
