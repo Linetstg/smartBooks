@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/smartBooks/static/css/main.92fe4926.css",
-    "main.js": "/smartBooks/static/js/main.5da9d833.js",
+    "main.js": "/smartBooks/static/js/main.28e451f2.js",
     "static/media/mainImage2.jpg": "/smartBooks/static/media/mainImage2.7f11ffd1bf1ff1a8eb7b.jpg",
     "static/media/logo.svg": "/smartBooks/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/smartBooks/index.html",
     "main.92fe4926.css.map": "/smartBooks/static/css/main.92fe4926.css.map",
-    "main.5da9d833.js.map": "/smartBooks/static/js/main.5da9d833.js.map"
+    "main.28e451f2.js.map": "/smartBooks/static/js/main.28e451f2.js.map"
   },
   "entrypoints": [
     "static/css/main.92fe4926.css",
-    "static/js/main.5da9d833.js"
+    "static/js/main.28e451f2.js"
   ]
 }
