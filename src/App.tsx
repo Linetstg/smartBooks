@@ -53,7 +53,7 @@ export const App: React.FC = () => {
     }
   }
 
-
+  console.log(foundBooks)
 
 
 
