@@ -28,7 +28,12 @@ body {
     flex-direction: column;
     text-align: center;
     gap: 20px;
+  }
 
+  &__processin {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
   }
 }
 

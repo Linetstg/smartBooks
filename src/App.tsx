@@ -144,6 +144,7 @@ export const App: React.FC = () => {
                   foundBooks={foundBooks}
                   numberBooks={numberBooks}
                   findBook={getBookById}
+                  getBook={getBook}
                 />
               }
             />

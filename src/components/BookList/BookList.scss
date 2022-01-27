@@ -10,6 +10,7 @@
   }
 
   &__element {
+    padding: 0px;
     display: grid;
     justify-content: center;
     gap: 40px;
@@ -36,6 +37,21 @@
       background-color: rgb(216, 222, 228);
       
     }
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+
+    &--button {
+      cursor: pointer;
+      font-size: 20px;
+      padding: 5px;
+      color: black;
+    }
+
+    
   }
 }
 
