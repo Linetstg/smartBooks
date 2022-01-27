@@ -17,3 +17,11 @@ export async function getBooks(
 
     return books;
 }
+
+export async function getSelectedBook(id: string) {
+  const book = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    .then(response => response.json());
+    
+
+    return book;
+}

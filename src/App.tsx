@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './App.scss';
 import { BookList } from './components/BookList/BookList';
 import { BookInfo } from './components/BookInfo/BookInfo';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 export const App: React.FC = () => {
   const [searchBook, setSearchBook] = useState('');
@@ -14,8 +14,6 @@ export const App: React.FC = () => {
   const [download, setDownload] = useState('');
   const [numberBooks, setNumberBooks] = useState<string | number>('');
   const [selectedBook, setSelectedBook] = useState<Books>({} as Books);
-
-  console.log(foundBooks);
 
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchBook(event?.target.value);
@@ -32,7 +30,6 @@ export const App: React.FC = () => {
   const getBook = async (startCount: number = 0, maxCount: number = 30) => {
     const search = await getBooks(searchBook, selectedFilter, selectedSorting, startCount, maxCount)
 
-    console.log(search);
     if (search) {
       setDownload('done');
     }
@@ -47,6 +44,7 @@ export const App: React.FC = () => {
   }
 
   const getBookById = (selectedId: string | number) => {
+    console.log(selectedId)
     const selectIteam = foundBooks.find(book => book.id === selectedId);
 
     if (selectIteam) {
@@ -54,7 +52,7 @@ export const App: React.FC = () => {
     }
   }
 
-  console.log(foundBooks);
+  
 
 
 
@@ -128,8 +126,6 @@ export const App: React.FC = () => {
 
         </form>
 
-
-
       </header>
 
       {download === 'processin' && (
@@ -140,13 +136,7 @@ export const App: React.FC = () => {
 
       {download === 'done' &&
         <div>
-
-          <BookList
-            foundBooks={foundBooks}
-            numberBooks={numberBooks}
-            findBook={getBookById}
-          />
-          {/* <Routes>
+          <Routes>
             <Route
               path="/"
               element={
@@ -163,13 +153,7 @@ export const App: React.FC = () => {
               element={<BookInfo selectedBook={selectedBook} />}
             />
 
-            <Route
-              path="*"
-              element={<Navigate to="/" />}
-            />
-
-
-          </Routes> */}
+          </Routes>
 
         </div>
       }

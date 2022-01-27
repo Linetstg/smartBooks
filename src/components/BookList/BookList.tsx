@@ -13,7 +13,7 @@ type Props = {
 export const BookList: React.FC<Props> = ({ foundBooks, numberBooks, findBook }) => {
 
 
-
+console.log(foundBooks)
 
   return (
     <div className="BookList">

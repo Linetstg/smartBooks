@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import  { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { getSelectedBook } from '../../api/api';
+import './BookInfo.scss';
 
 type Props = {
   selectedBook: Books
@@ -8,34 +10,54 @@ type Props = {
 
 export const BookInfo: React.FC<Props> = ({ selectedBook }) => {
 
+  const [mainBook, setMaimBook] = useState({} as Books);
+  
+  
 
+  useEffect(() => {
+    getSelectedBook(selectedBook.id).then((select) => setMaimBook(select))
+  }, [selectedBook.id])
 
-  console.log(selectedBook);
+  console.log(mainBook, selectedBook.id)
+  const bookImage: BookImageLinks = mainBook.volumeInfo?.imageLinks;
+  const mainImage = bookImage?.medium || bookImage?.small || bookImage?.smallThumbnail || bookImage?.thumbnail;
+  console.log(bookImage)
 
+  
   return (
     <div className="BookInfo">
-      <div className="BookInfo__info">
-        <div className="BookInfo__info--details">
-          {selectedBook.volumeInfo?.categories?.map(cata => cata).join(', ')}
+
+      <div className="BookInfo__image">
+        <img
+          className="BookInfo__image--img"
+          src={mainImage}
+          alt="Book image"
+        />
+      </div>
+
+      <div className="BookInfo__element">
+        <div className="BookInfo__element--categories">
+          {mainBook.volumeInfo?.categories?.map(categories => categories).join(' / ')}
         </div>
 
-        <h2>
-          {selectedBook.volumeInfo?.title}
+        <h2 className="BookInfo__element--title">
+          {mainBook.volumeInfo?.title}
         </h2>
 
-        <div className="CurrentBook__info--details">
-          {selectedBook.volumeInfo?.authors?.map(autor => autor).join(' / ')}
+        <div className="BookInfo__element--authors">
+          {mainBook.volumeInfo?.authors?.map(author => author).join(', ')}
         </div>
-        <div className="CurrentBook__info--details">
-          {selectedBook.volumeInfo?.description}
-        </div>
+        <div className="BookInfo__element--description" dangerouslySetInnerHTML={{ __html: mainBook.volumeInfo?.description }} />
         <Link
-         className="route-link"
-         to="/"
+          className="BookInfo__element--link"
+          to="/"
         >
-          Back
+          &lArr; Back
         </Link>
       </div>
+
+
+
     </div>
   );
 }
