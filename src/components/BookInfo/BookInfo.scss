@@ -4,20 +4,33 @@ $primary-color: rgb(146, 143, 143);
   box-sizing: border-box;
   display: grid;
   justify-content: center;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 1fr;
   gap: 20px;
+
+  @media (min-width: 680px) {
+    grid-template-columns: 2fr 3fr;
+  }
 
   &__image  {
     background-color: rgb(238, 232, 223);
     padding-top: 50px;
+    padding-bottom: 20px;
+    padding-right: 50px;
+    padding-left: 50px;
+
+    @media (min-width: 1080px) {
+      padding-top: 50px;
       padding-bottom: 50px;
       padding-right: 100px;
       padding-left: 100px;
+    }
     
     &--img {
       
       width: 100%;
       height: auto;
+
+      
     }
   }
 

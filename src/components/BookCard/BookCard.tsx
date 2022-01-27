@@ -31,7 +31,7 @@ export const BookCard: React.FC<Props> = ({ book, findBook }) => {
       <div className="BookCard__value">
         <p className="BookCard__value--category">{volumeInfo.categories?.find(categories => categories) || ''} </p>
         <h3 className="BookCard__value--title">{volumeInfo.title}</h3>
-        <p className="BookCard__value--autor">{volumeInfo.authors}</p>
+        <p className="BookCard__value--autor">{volumeInfo.authors?.map(author => author).join(', ')}</p>
       </div>
     </Link>
 
