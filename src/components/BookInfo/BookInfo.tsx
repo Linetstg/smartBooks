@@ -18,10 +18,9 @@ export const BookInfo: React.FC<Props> = ({ selectedBook }) => {
     getSelectedBook(selectedBook.id).then((select) => setMaimBook(select))
   }, [selectedBook.id])
 
-  console.log(mainBook, selectedBook.id)
   const bookImage: BookImageLinks = mainBook.volumeInfo?.imageLinks;
   const mainImage = bookImage?.medium || bookImage?.small || bookImage?.smallThumbnail || bookImage?.thumbnail;
-  console.log(bookImage)
+  
 
   
   return (

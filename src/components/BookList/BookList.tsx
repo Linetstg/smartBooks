@@ -14,8 +14,6 @@ type Props = {
 export const BookList: React.FC<Props> = ({ foundBooks, numberBooks, findBook, getBook }) => {
 
 
-  console.log(foundBooks)
-
   return (
     <div className="BookList">
       <h2 className="BookList__number">{`Found ${numberBooks} results`}</h2>
@@ -36,7 +34,8 @@ export const BookList: React.FC<Props> = ({ foundBooks, numberBooks, findBook, g
       </ul>
 
       <div className="BookList__pagination">
-        <button
+        {foundBooks?.length < 30 || numberBooks === foundBooks?.length  || numberBooks === 0 ? '' 
+        :<button
           type="button"
           className="BookList__pagination--button"
           onClick={() => {
@@ -44,7 +43,7 @@ export const BookList: React.FC<Props> = ({ foundBooks, numberBooks, findBook, g
           }}
         >
           Load more
-        </button>
+        </button>}
       </div>
     </div>
   );
